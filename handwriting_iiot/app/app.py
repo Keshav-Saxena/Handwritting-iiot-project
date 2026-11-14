@@ -6,6 +6,10 @@ from preprocess import preprocess_image
 import predict as P
 from mqtt_publish import publish_result
 
+app = Flask(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
+UP = os.path.join(P.ROOT, "data", "uploads"); os.makedirs(UP, exist_ok=True)
+
 try:
     import numpy as np
     m = P.get_model()
