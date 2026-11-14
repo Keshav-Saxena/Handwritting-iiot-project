@@ -9,6 +9,11 @@ from mqtt_publish import publish_result
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
 UP = os.path.join(P.ROOT, "data", "uploads"); os.makedirs(UP, exist_ok=True)
+try:
+    P.get_model()
+    print("Model loaded OK")
+except Exception as e:
+    print("Model load FAILED:", type(e).__name__, e)
 
 HTML = """<!doctype html>
 <html lang="en">
@@ -164,8 +169,9 @@ def index():
         r = dict(digit=digit, conf=conf, ok=ok, err=err, img=base64.b64encode(buf.getvalue()).decode(),
                  t_pre=round((t1-t)*1000,1), t_inf=round((t2-t1)*1000,1), t_pub=round((t3-t2)*1000,1))
         return render_template_string(HTML, r=r)
-    except (ValueError, FileNotFoundError) as e:
-        return render_template_string(HTML, error=str(e))
+        except Exception as e:
+        import traceback; traceback.print_exc()
+        return render_template_string(HTML, error=f"{type(e).__name__}: {e}")
     finally:
         try: os.remove(path)
         except OSError: pass
