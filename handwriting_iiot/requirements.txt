@@ -1,9 +1,6 @@
-tensorflow>=2.16
+tensorflow-cpu
 numpy
 pillow
-opencv-python
-matplotlib
-scikit-learn
+opencv-python-headless
 flask
-paho-mqtt>=2.0
 gunicorn
