@@ -1,0 +1,11 @@
+{
+  "test_accuracy": 0.9884999990463257,
+  "test_loss": 0.03499246761202812,
+  "macro_precision": 0.9884718022810735,
+  "macro_recall": 0.9884766121396021,
+  "macro_f1": 0.9884424058805943,
+  "training_time_s": 84.2,
+  "avg_inference_ms": 86.76,
+  "epochs_run": 7,
+  "tensorflow": "2.21.0"
+}

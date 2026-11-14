@@ -1,0 +1,8 @@
+tensorflow>=2.16
+numpy
+pillow
+opencv-python
+matplotlib
+scikit-learn
+flask
+paho-mqtt>=2.0
