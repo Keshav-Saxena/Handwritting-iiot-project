@@ -10,11 +10,13 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
 UP = os.path.join(P.ROOT, "data", "uploads"); os.makedirs(UP, exist_ok=True)
 try:
-    P.get_model()
-    print("Model loaded OK")
+  try:
+    import numpy as np
+    m = P.get_model()
+    m.predict(np.zeros((1,) + tuple(m.input_shape[1:]), dtype="float32"), verbose=0)
+    print("Model loaded and warmed up OK")
 except Exception as e:
     print("Model load FAILED:", type(e).__name__, e)
-
 HTML = """<!doctype html>
 <html lang="en">
 <head>
