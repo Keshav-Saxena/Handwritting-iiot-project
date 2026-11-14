@@ -169,7 +169,7 @@ def index():
         r = dict(digit=digit, conf=conf, ok=ok, err=err, img=base64.b64encode(buf.getvalue()).decode(),
                  t_pre=round((t1-t)*1000,1), t_inf=round((t2-t1)*1000,1), t_pub=round((t3-t2)*1000,1))
         return render_template_string(HTML, r=r)
-        except Exception as e:
+    except Exception as e:
         import traceback; traceback.print_exc()
         return render_template_string(HTML, error=f"{type(e).__name__}: {e}")
     finally:
